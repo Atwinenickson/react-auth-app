@@ -1,18 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-export default class Callback extends Component {
-    componentDidMount() {
-        if (/access_token | id_token | error/.test(this.props.location.hash)) {
-            this.props.auth.handleAuthentication(); 
+class Callback extends Component {
+    componentDidMount = () => {
+        // Handle authentication if expected values are in the URL.
+        if (/access_token|id_token|error/.test(this.props.location.hash)) {
+            this.props.auth.handleAuthentication();
         } else {
-            throw new Error("Invalid callback Url");
+            throw new Error("Invalid callback URL.");
         }
     };
     render() {
-        return (
-            <h1>
-                loading....
-            </h1>
-        )
+        return <h1>Loading...</h1>;
     }
 }
+
+export default Callback;
